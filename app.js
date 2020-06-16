@@ -63,7 +63,7 @@ const item = mongoose.model("Item", ItemSchema)
 app.get("/", (req, res) => {
      res.render("index")
 })
-
+history
 //auth
 //login
 app.get("/login", (req, res) => {
