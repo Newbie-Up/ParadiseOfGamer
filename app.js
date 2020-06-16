@@ -63,7 +63,7 @@ const item = mongoose.model("Item", ItemSchema)
 app.get("/", (req, res) => {
      res.render("index")
 })
-history
+
 //auth
 //login
 app.get("/login", (req, res) => {
@@ -147,6 +147,6 @@ function isLogedIn(req, res, next){
 
 
 //server
-app.listen(3000, () => {
+app.listen(8080, () => {
    console.log("Server running...");
      })
