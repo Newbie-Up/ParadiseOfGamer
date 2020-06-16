@@ -1,5 +1,13 @@
+button[type="submit"] {
+  margin-top: 40px;
+}
 
-
+div.container {
+  margin-bottom: 100px;
+}
+footer {
+  margin-top: 100px;
+}
 .flex-wrap {
   display: -webkit-box;
   display: -webkit-flex;

@@ -1,33 +1,24 @@
-<%- include ("partials/header")  %>
+<%- include ("partials/loginHeader")  %>
 <div class="container">
-<table class="table">
-     <thead class="thead-dark">
+     <button type="button" class="btn btn-success btn-lg" onclick="window.location.href='/market/new'" style=" margin-bottom: 50px; margin-left: 42%;">Sell your item</button>
+<table class="table table-striped">
+     <thead>
        <tr>
-         <th scope="col">#</th>
-         <th scope="col">First</th>
-         <th scope="col">Last</th>
-         <th scope="col">Handle</th>
+         <th scope="col"style="width: 200px;">Game</th>
+         <th scope="col" style="width: 200px;">Price</th>
+         <th scope="col" style="width: 200px;">Negotiable</th>
+         <th scope="col">Description</th>
        </tr>
      </thead>
      <tbody>
-       <tr>
-         <th scope="row">1</th>
-         <td>Mark</td>
-         <td>Otto</td>
-         <td>@mdo</td>
-       </tr>
-       <tr>
-         <th scope="row">2</th>
-         <td>Jacob</td>
-         <td>Thornton</td>
-         <td>@fat</td>
-       </tr>
-       <tr>
-         <th scope="row">3</th>
-         <td>Larry</td>
-         <td>the Bird</td>
-         <td>@twitter</td>
-       </tr>
+       <% items.forEach(element => { %>
+          <tr>
+               <td><%=  element.name %></td>
+               <td><span>$</span><%=  element.price %></td>
+               <td><%=  element.negotiable %></td>
+               <td><%=  element.body %></td>
+          </tr>
+       <% }) %>          
      </tbody>
    </table>
 </div>
