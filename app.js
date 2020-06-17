@@ -9,7 +9,8 @@ passport = require('passport'),
 localStrategy = require('passport-local'),
 passportLocalMongoose = require('passport-local-mongoose'),
 app = express(),
-User = require('./models/user.js')
+User = require('./models/user.js'),
+paymentIntent = require('./models/payment')
 
 //=====setup=====
 
@@ -57,14 +58,16 @@ const ItemSchema = new mongoose.Schema({
 const item = mongoose.model("Item", ItemSchema)
 
 
-//=====routes=====
+//===========
+// routes
+// ============
 
 //home
 app.get("/", (req, res) => {
      res.render("index")
 })
 
-//auth
+//=====auth======
 //login
 app.get("/login", (req, res) => {
      res.render("login")
@@ -72,7 +75,7 @@ app.get("/login", (req, res) => {
 
 app.post("/login", passport.authenticate("local", {
      failureRedirect: "/login",//if not verified, back to login page
-     successRedirect: "/market"//if verified, go to market page
+     successRedirect: "/"//if verified, go to market page
 }), (req, res) => {})
 
 //signup
@@ -110,7 +113,8 @@ app.get("/logout", (req, res) => {
 
 
 
-//market
+//=====market=====
+//index
 app.get("/market", isLogedIn, (req, res) => {
      //retrieve all items in db
      item.find({}, (err, items) => {
@@ -133,6 +137,33 @@ app.post("/market", (req, res) => {
 app.get("/market/new", isLogedIn, (req, res) => {
      res.render("newpost")
 })
+
+
+//======payment======= 
+//sucessful
+app.get("/sucess", (req, res) => {
+     res.render("sucessful")
+})
+//checkout
+app.get("/market/checkout", (req, res) => {
+     const intent = paymentIntent
+     res.render('checkout')
+
+}) 
+
+//======review=======
+app.get("/review", isLogedIn, (req, res) => {
+     
+          res.render('review')
+     
+          
+     
+})
+
+app.get("/review/game", (req, res) => {
+     console.log(req.query);
+     res.redirect("https://www.ign.com/search?q=" + req.query.game)
+} )
 
 
 
